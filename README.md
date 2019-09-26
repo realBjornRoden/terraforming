@@ -1,4 +1,4 @@
-# infrastructure as code (IaC)
+# Infrastructure as Code (IaC)
 The purpose of infrastructure as code (IaC) is to create and execute code to define, create, modify, and delete computing, storage and networking infrastructure, with consistency.
 * [terraform](https://www.terraform.io)
 
@@ -40,7 +40,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
      count = 1
    }
    ```
-   1. terraform init
+1. terraform init
    ```
    /Users/bjro/code/cloudactions/terraforming: terraform init
 
@@ -70,25 +70,25 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    rerun this command to reinitialize your working directory. If you forget, other
    commands will detect it and remind you to do so if necessary.
    ```
-   1. terraform apply
+1. terraform plan
    ```
-terraform plan
-Refreshing Terraform state in-memory prior to plan...
-The refreshed state will be used to calculate this plan, but will not be
-persisted to local or remote state storage.
+   $ terraform plan
+   Refreshing Terraform state in-memory prior to plan...
+   The refreshed state will be used to calculate this plan, but will not be
+   persisted to local or remote state storage.
 
-aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
+   aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
 
-------------------------------------------------------------------------
+   ------------------------------------------------------------------------
 
-No changes. Infrastructure is up-to-date.
-
-This means that Terraform did not detect any differences between your
-configuration and real physical resources that exist. As a result, no
-actions need to be performed.
-
+   No changes. Infrastructure is up-to-date.
+   
+   This means that Terraform did not detect any differences between your
+   configuration and real physical resources that exist. As a result, no
+   actions need to be performed.
    ```
-   1. terraform apply
+
+1. terraform apply
    ```
    $ terraform apply
 
@@ -181,7 +181,7 @@ actions need to be performed.
    
    Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
    ```
-   1. aws ec2 describe-instances
+1. aws ec2 describe-instances
    ```
    $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
    None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
