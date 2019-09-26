@@ -70,23 +70,6 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    rerun this command to reinitialize your working directory. If you forget, other
    commands will detect it and remind you to do so if necessary.
    ```
-1. terraform plan
-   ```
-   $ terraform plan
-   Refreshing Terraform state in-memory prior to plan...
-   The refreshed state will be used to calculate this plan, but will not be
-   persisted to local or remote state storage.
-
-   aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
-
-   ------------------------------------------------------------------------
-
-   No changes. Infrastructure is up-to-date.
-   
-   This means that Terraform did not detect any differences between your
-   configuration and real physical resources that exist. As a result, no
-   actions need to be performed.
-   ```
 
 1. terraform apply
    ```
@@ -181,6 +164,171 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    
    Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
    ```
+1. aws ec2 describe-instances
+   ```
+   $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
+   None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
+   ```
+
+1. add to terraform main.tf file within the "resource" stanza
+   ```
+   tags = {
+    Name = "vm-solo-01"
+   }
+   ```
+
+1. terraform plan
+   ```
+   $ terraform plan
+   Refreshing Terraform state in-memory prior to plan...
+   The refreshed state will be used to calculate this plan, but will not be
+   persisted to local or remote state storage.
+
+   aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
+
+   ------------------------------------------------------------------------
+
+   An execution plan has been generated and is shown below.
+   Resource actions are indicated with the following symbols:
+     ~ update in-place
+
+   Terraform will perform the following actions:
+
+     # aws_instance.vm-solo-01 will be updated in-place
+     ~ resource "aws_instance" "vm-solo-01" {
+           ami                          = "ami-00c03f7f7f2ec15c3"
+           arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308"
+           associate_public_ip_address  = true
+           availability_zone            = "us-east-2c"
+           cpu_core_count               = 1
+           cpu_threads_per_core         = 1
+           disable_api_termination      = false
+           ebs_optimized                = false
+           get_password_data            = false
+           id                           = "i-0b11a0cdff48a7308"
+           instance_state               = "running"
+           instance_type                = "t2.micro"
+           ipv6_address_count           = 0
+           ipv6_addresses               = []
+           monitoring                   = false
+           primary_network_interface_id = "eni-0f2c842e9e3d30902"
+           private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal"
+           private_ip                   = "172.31.44.122"
+           public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com"
+           public_ip                    = "18.220.211.66"
+           security_groups              = [
+               "default",
+           ]
+           source_dest_check            = true
+           subnet_id                    = "subnet-d38e339f"
+         ~ tags                         = {
+             + "Name" = "vm-solo-01"
+           }
+           tenancy                      = "default"
+           volume_tags                  = {}
+           vpc_security_group_ids       = [
+               "sg-ebf9c788",
+           ]
+         
+           credit_specification {
+               cpu_credits = "standard"
+           }
+      
+           root_block_device {
+               delete_on_termination = true
+               encrypted             = false
+               iops                  = 100
+               volume_id             = "vol-0c481ce1e1eb73b56"
+               volume_size           = 8
+               volume_type           = "gp2"
+           }
+       }
+
+   Plan: 0 to add, 1 to change, 0 to destroy.
+
+   ------------------------------------------------------------------------
+
+   Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+   can't guarantee that exactly these actions will be performed if
+   "terraform apply" is subsequently run.
+   ```
+
+1. terraform apply
+   ```
+   $ terraform apply
+   aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
+
+   An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+     ~ update in-place
+
+   Terraform will perform the following actions:
+
+     # aws_instance.vm-solo-01 will be updated in-place
+     ~ resource "aws_instance" "vm-solo-01" {
+           ami                          = "ami-00c03f7f7f2ec15c3"
+           arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308"
+           associate_public_ip_address  = true
+           availability_zone            = "us-east-2c"
+           cpu_core_count               = 1
+           cpu_threads_per_core         = 1
+           disable_api_termination      = false
+           ebs_optimized                = false
+           get_password_data            = false
+           id                           = "i-0b11a0cdff48a7308"
+           instance_state               = "running"
+           instance_type                = "t2.micro"
+           ipv6_address_count           = 0
+           ipv6_addresses               = []
+           monitoring                   = false
+           primary_network_interface_id = "eni-0f2c842e9e3d30902"
+           private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal"
+           private_ip                   = "172.31.44.122"
+           public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com"
+           public_ip                    = "18.220.211.66"
+           security_groups              = [
+               "default",
+           ]
+           source_dest_check            = true
+           subnet_id                    = "subnet-d38e339f"
+         ~ tags                         = {
+             + "Name" = "vm-solo-01"
+           }
+           tenancy                      = "default"
+           volume_tags                  = {}
+           vpc_security_group_ids       = [
+               "sg-ebf9c788",
+           ]
+
+           credit_specification {
+               cpu_credits = "standard"
+           }
+   
+           root_block_device {
+               delete_on_termination = true
+               encrypted             = false
+               iops                  = 100
+               volume_id             = "vol-0c481ce1e1eb73b56"
+               volume_size           = 8
+               volume_type           = "gp2"
+           }
+       }
+   
+   Plan: 0 to add, 1 to change, 0 to destroy.
+   
+   Do you want to perform these actions?
+     Terraform will perform the actions described above.
+     Only 'yes' will be accepted to approve.
+   
+     Enter a value: yes
+   
+   aws_instance.vm-solo-01: Modifying... [id=i-0b11a0cdff48a7308]
+   aws_instance.vm-solo-01: Still modifying... [id=i-0b11a0cdff48a7308, 10s elapsed]
+   aws_instance.vm-solo-01: Modifications complete after 13s [id=i-0b11a0cdff48a7308]
+   
+   Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+   ```
+
 1. aws ec2 describe-instances
    ```
    $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
