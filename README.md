@@ -259,7 +259,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
 
    An execution plan has been generated and is shown below.
-Resource actions are indicated with the following symbols:
+   Resource actions are indicated with the following symbols:
      ~ update in-place
 
    Terraform will perform the following actions:
