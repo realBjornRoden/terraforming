@@ -30,6 +30,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 ## AWS (Amazon Web Services)
+* main.tf
    ```
    provider "aws" {
    	region = "us-east-2"
@@ -253,7 +254,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    "terraform apply" is subsequently run.
    ```
 
-1. Run `terraform apply`
+1. Run `terraform apply` to create the VM
    ```
    $ terraform apply
    aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
@@ -335,6 +336,89 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    vm-solo-01	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
+1. Run `terraform destroy` to delete (terminate) the VM
+   ```
+   $ terraform destroy
+   aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
+   
+   An execution plan has been generated and is shown below.
+   Resource actions are indicated with the following symbols:
+     - destroy
+   
+   Terraform will perform the following actions:
+   
+     # aws_instance.vm-solo-01 will be destroyed
+     - resource "aws_instance" "vm-solo-01" {
+         - ami                          = "ami-00c03f7f7f2ec15c3" -> null
+         - arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308" -> null
+         - associate_public_ip_address  = true -> null
+         - availability_zone            = "us-east-2c" -> null
+         - cpu_core_count               = 1 -> null
+         - cpu_threads_per_core         = 1 -> null
+         - disable_api_termination      = false -> null
+         - ebs_optimized                = false -> null
+         - get_password_data            = false -> null
+         - id                           = "i-0b11a0cdff48a7308" -> null
+         - instance_state               = "running" -> null
+         - instance_type                = "t2.micro" -> null
+         - ipv6_address_count           = 0 -> null
+         - ipv6_addresses               = [] -> null
+         - monitoring                   = false -> null
+         - primary_network_interface_id = "eni-0f2c842e9e3d30902" -> null
+         - private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal" -> null
+         - private_ip                   = "172.31.44.122" -> null
+         - public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com" -> null
+         - public_ip                    = "18.220.211.66" -> null
+         - security_groups              = [
+             - "default",
+           ] -> null
+         - source_dest_check            = true -> null
+         - subnet_id                    = "subnet-d38e339f" -> null
+         - tags                         = {
+             - "Name" = "vm-solo-01"
+           } -> null
+         - tenancy                      = "default" -> null
+         - volume_tags                  = {} -> null
+         - vpc_security_group_ids       = [
+             - "sg-ebf9c788",
+           ] -> null
+   
+         - credit_specification {
+             - cpu_credits = "standard" -> null
+           }
+   
+         - root_block_device {
+             - delete_on_termination = true -> null
+             - encrypted             = false -> null
+             - iops                  = 100 -> null
+             - volume_id             = "vol-0c481ce1e1eb73b56" -> null
+             - volume_size           = 8 -> null
+             - volume_type           = "gp2" -> null
+           }
+       }
+   
+   Plan: 0 to add, 0 to change, 1 to destroy.
+   
+   Do you really want to destroy all resources?
+     Terraform will destroy all your managed infrastructure, as shown above.
+     There is no undo. Only 'yes' will be accepted to confirm.
+   
+     Enter a value: yes
+   
+   aws_instance.vm-solo-01: Destroying... [id=i-0b11a0cdff48a7308]
+   aws_instance.vm-solo-01: Still destroying... [id=i-0b11a0cdff48a7308, 10s elapsed]
+   aws_instance.vm-solo-01: Still destroying... [id=i-0b11a0cdff48a7308, 20s elapsed]
+   aws_instance.vm-solo-01: Destruction complete after 25s
+   
+   Destroy complete! Resources: 1 destroyed.
+   ```
+   
+1. Run `aws ec2 describe-instances`
+   ```
+   $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
+   vm-solo-01	i-0b11a0cdff48a7308	None	None	us-east-2c	terminated
+   ```
+
 ## GCP (Google Cloud Platform)
 * Create and download service account keys JSON file from Console [create](https://console.cloud.google.com/apis/credentials), [manage](https://console.cloud.google.com/iam-admin/serviceaccounts), or CLI:
    ```
@@ -357,28 +441,15 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    $ gcloud iam roles create terraform_svc --project project-01-default --file terraform-roles.yaml 
    Created role [terraform_svc].
    description: Terraform Service Role for GCP Compute
-   etag: 
+   etag: deadbeef
    includedPermissions:
-   - compute.autoscalers.get
-   - compute.autoscalers.list
-   - compute.autoscalers.update
-   - compute.disks.get
-   - compute.images.get
-   - compute.instanceGroupManagers.get
-   - compute.instanceGroupManagers.list
-   - compute.instanceGroupManagers.update
-   - compute.instanceGroupManagers.use
-   - compute.instances.get
-   - compute.instances.list
-   - compute.instances.setMachineType
-   - compute.instances.start
-   - compute.instances.startWithEncryptionKey
-   - compute.instances.stop
-   - compute.machineTypes.list
-   - compute.zones.get
-      - compute.zones.list
-   - resourcemanager.projects.get
-      name: projects/project-01-default/roles/terraform_svc
+   - compute.disks.create
+   - compute.instances.create
+   - compute.instances.delete
+   - compute.instances.setMetadata
+   - compute.subnetworks.use
+   - compute.subnetworks.useExternalIp
+   name: projects/project-01-default/roles/terraform_svc
    stage: ALPHA
    title: Terraform
 
@@ -399,32 +470,33 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
      - serviceAccount:terraform@project-01-default.iam.gserviceaccount.com
      - user:realbjornroden@gmail.com
      role: roles/owner
-   etag: 
+   etag: deadbeef
    version: 1
    ```
 * main.tf
    ```
    provider "google" {
-   	credentials = "${file("terraform-svc.json")}"
-   	region = "us-east2"
-   	zone = "us-east2-a"
+	credentials = "${file("terraform-svc.json")}"
+	project = "project-01-default"
+	region = "us-east1"
    }
 
    resource "google_compute_instance" "vm-solo-01" {
-      	provider = "google"
-   	name = "vm-solo-01"
-   	machine_type = "f1-micro"
-   	boot_disk {
-   		initialize_params {
-   			image = "debian-cloud/debian-9"
-   		}
-   	}
-   	network_interface {
-   		network = "default"
-   		//access_config {
-   			// Ephemeral IP
-   		//}
-   	}
+	provider = "google"
+	zone = "us-east1-b"
+	name = "vm-solo-01"
+	machine_type = "f1-micro"
+	boot_disk {
+		initialize_params {
+			image = "debian-cloud/debian-9"
+		}
+	}
+	network_interface {
+		network = "default"
+		access_config {
+			// for external IP
+		}
+	}
    }
    ```
 1. Run `terraform init`
@@ -538,10 +610,74 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    
    ```
 
-1. Run `terraform apply`
+1. Run `terraform apply` to create the VM
    ```
+   $ terraform apply -auto-approve
+   google_compute_instance.vm-solo-01: Creating...
+   google_compute_instance.vm-solo-01: Still creating... [10s elapsed]
+   google_compute_instance.vm-solo-01: Creation complete after 14s [id=vm-solo-01]
+
+   Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+   ```
+
+1. Run `gcloud compute instances list`
+   ```
+   $ gcloud compute instances list
+   NAME        ZONE        MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+   vm-solo-01  us-east1-b  f1-micro                   10.142.0.2   35.243.203.155  RUNNING
+   ```
+1.  Run `gcloud iam roles update` to add the permission `compute.instances.get`
+   ```
+   $ gcloud iam roles update terraform_svc --project project-01-default --file terraform-roles.yaml 
+   The specified role does not contain an "etag" field identifying a 
+   specific version to replace. Updating a role without an "etag" can 
+   overwrite concurrent role changes.
+
+   Replace existing role (Y/n)?  Y
+
+   description: Terraform Service Role for GCP Compute
+   etag: deadbeef
+   includedPermissions:
+   - compute.disks.create
+   - compute.instances.create
+   - compute.instances.delete
+   - compute.instances.get
+   - compute.instances.setMetadata
+   - compute.subnetworks.use
+   - compute.subnetworks.useExternalIp
+   name: projects/project-01-default/roles/terraform_svc
+   stage: ALPHA
+   title: Terraform
+   ```
+
+1. Run `terraform destroy` to delete the VM
+   ```
+   $ terraform destroy -auto-approve
+   google_compute_instance.vm-solo-01: Refreshing state... [id=vm-solo-01]
+   google_compute_instance.vm-solo-01: Destroying... [id=vm-solo-01]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 10s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 20s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 30s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 40s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 50s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 1m0s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 1m10s elapsed]
+   google_compute_instance.vm-solo-01: Still destroying... [id=vm-solo-01, 1m20s elapsed]
+   google_compute_instance.vm-solo-01: Destruction complete after 1m22s
+
+   Destroy complete! Resources: 1 destroyed.
    ```
 
 ## MSAC (Microsoft Azure Cloud)
    ```
    ```
+
+
+1. Run `terraform apply` to create the VM
+   ```
+   ```
+
+1. Run `terraform destroy` to delete the VM
+   ```
+   ```
+
