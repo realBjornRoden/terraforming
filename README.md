@@ -340,6 +340,10 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
    $ gcloud auth login
 
+   $ gcloud projects list
+   PROJECT_ID          NAME                PROJECT_NUMBER
+   project-01-default  project-01-default  523124300007
+
    $ gcloud iam service-accounts create terraform-svc --display-name "Terraform Service Account"
    Created service account [terraform-svc].
 
@@ -349,6 +353,54 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 
    $ gcloud iam service-accounts keys create ./terraform-svc.json --iam-account terraform-svc@project-01-default.iam.gserviceaccount.com
    created key [deadbeeff1fa3b6c4f6ca6647f7b615ffa554391] of type [json] as [./terraform-svc.json] for [terraform-svc@project-01-default.iam.gserviceaccount.com]
+
+   $ gcloud iam roles create terraform_svc --project project-01-default --file terraform-roles.yaml 
+   Created role [terraform_svc].
+   description: Terraform Service Role for GCP Compute
+   etag: 
+   includedPermissions:
+   - compute.autoscalers.get
+   - compute.autoscalers.list
+   - compute.autoscalers.update
+   - compute.disks.get
+   - compute.images.get
+   - compute.instanceGroupManagers.get
+   - compute.instanceGroupManagers.list
+   - compute.instanceGroupManagers.update
+   - compute.instanceGroupManagers.use
+   - compute.instances.get
+   - compute.instances.list
+   - compute.instances.setMachineType
+   - compute.instances.start
+   - compute.instances.startWithEncryptionKey
+   - compute.instances.stop
+   - compute.machineTypes.list
+   - compute.zones.get
+      - compute.zones.list
+   - resourcemanager.projects.get
+      name: projects/project-01-default/roles/terraform_svc
+   stage: ALPHA
+   title: Terraform
+
+   $ gcloud projects add-iam-policy-binding project-01-default --role projects/project-01-default/roles/terraform_svc --member serviceAccount:terraform-svc@project-01-default.iam.gserviceaccount.com
+   Updated IAM policy for project [project-01-default].
+   bindings:
+   - members:
+     - serviceAccount:terraform-svc@project-01-default.iam.gserviceaccount.com
+     role: projects/project-01-default/roles/terraform_svc
+   - members:
+     - serviceAccount:service-523124360557@compute-system.iam.gserviceaccount.com
+     role: roles/compute.serviceAgent
+   - members:
+  - serviceAccount:523124360557-compute@developer.gserviceaccount.com
+     - serviceAccount:523124360557@cloudservices.gserviceaccount.com
+     role: roles/editor
+   - members:
+     - serviceAccount:terraform@project-01-default.iam.gserviceaccount.com
+     - user:realbjornroden@gmail.com
+     role: roles/owner
+   etag: 
+   version: 1
    ```
 * main.tf
    ```
