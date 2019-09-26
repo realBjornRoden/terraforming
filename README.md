@@ -336,6 +336,21 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 ## GCP (Google Cloud Platform)
+* Create and download service account keys JSON file from [Console](https://console.cloud.google.com/apis/credentials) or CLI:
+   ```
+   $ gcloud auth login
+
+   $ gcloud iam service-accounts create terraform-svc --display-name "Terraform Service Account"
+   Created service account [terraform-svc].
+
+   $ gcloud iam service-accounts list --filter "terraform-svc"
+   NAME                       EMAIL                                                           DISABLED
+   Terraform Service Account  terraform-svc@project-01-default.iam.gserviceaccount.com        False
+
+   $ gcloud iam service-accounts keys create ./terraform-svc.json --iam-account terraform-svc@project-01-default.iam.gserviceaccount.com
+   created key [deadbeeff1fa3b6c4f6ca6647f7b615ffa554391] of type [json] as [./terraform-svc.json] for [terraform-svc@project-01-default.iam.gserviceaccount.com]
+   ```
+* main.tf
    ```
    provider "google" {
    	credentials = "${file("account.json")}"
