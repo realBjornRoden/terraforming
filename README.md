@@ -32,15 +32,15 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 ## AWS (Amazon Web Services)
    ```
    provider "aws" {
-     region = "us-east-2"
+   	region = "us-east-2"
    }
    resource "aws_instance" "vm-solo-01" {
-     ami = "ami-00c03f7f7f2ec15c3"
-     instance_type = "t2.micro"
-     count = 1
+   	ami = "ami-00c03f7f7f2ec15c3"
+   	instance_type = "t2.micro"
+   	count = 1
    }
    ```
-1. terraform init
+1. Run `terraform init`
    ```
    /Users/bjro/code/cloudactions/terraforming: terraform init
 
@@ -71,7 +71,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    commands will detect it and remind you to do so if necessary.
    ```
 
-1. terraform apply
+1. Run `terraform apply` (ordinarily after `terraform plan` to validate the configuration)
    ```
    $ terraform apply
 
@@ -164,20 +164,20 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    
    Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
    ```
-1. aws ec2 describe-instances
+1. Run `aws ec2 describe-instances`
    ```
    $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
    None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
-1. add to terraform main.tf file within the "resource" stanza
+1. Set the AWS VM name tag by adding the "tags" stanza to the terraform `main.tf` file within the "resource" stanza
    ```
    tags = {
     Name = "vm-solo-01"
    }
    ```
 
-1. terraform plan
+1. Run `terraform plan`
    ```
    $ terraform plan
    Refreshing Terraform state in-memory prior to plan...
@@ -253,7 +253,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    "terraform apply" is subsequently run.
    ```
 
-1. terraform apply
+1. Run `terraform apply`
    ```
    $ terraform apply
    aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
@@ -329,16 +329,32 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
    ```
 
-1. aws ec2 describe-instances
+1. Run `aws ec2 describe-instances`
    ```
    $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
    vm-solo-01	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
 ## GCP (Google Cloud Platform)
-```
-```
+   ```
+   provider "aws" {
+   	region = "us-east-2"
+   }
+   resource "aws_instance" "vm-solo-01" {
+   	ami = "ami-00c03f7f7f2ec15c3"
+   	instance_type = "t2.micro"
+   	count = 1
+   }
+   ```
 
 ## MSAC (Microsoft Azure Cloud)
-```
-```
+   ```
+   provider "aws" {
+   	region = "us-east-2"
+   }
+   resource "aws_instance" "vm-solo-01" {
+   	ami = "ami-00c03f7f7f2ec15c3"
+   	instance_type = "t2.micro"
+   	count = 1
+   }
+   ```
