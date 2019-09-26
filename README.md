@@ -30,6 +30,10 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 ## AWS (Amazon Web Services)
+* [AWS]()
+* Ensure login key configuration is made with  the `aws configure` for the user with sufficient Policy permissions
+<br><i>NB. Below is performed with the group set to the policy <b>AmazonEC2FullAccess</b></i>
+
 * main.tf
    ```
    provider "aws" {
@@ -420,6 +424,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 ## GCP (Google Cloud Platform)
+* [Getting started with Terraform on Google Cloud Platform](https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform)
 * Create and download service account keys JSON file from Console [create](https://console.cloud.google.com/apis/credentials), [manage](https://console.cloud.google.com/iam-admin/serviceaccounts), or CLI:
    ```
    $ gcloud auth login
