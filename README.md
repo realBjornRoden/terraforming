@@ -332,7 +332,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 1. aws ec2 describe-instances
    ```
    $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
-   None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
+   vm-solo-01	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
 ## GCP (Google Cloud Platform)
