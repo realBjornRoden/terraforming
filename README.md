@@ -635,28 +635,28 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 1.  Run `gcloud iam roles update` to add the permission `compute.instances.get` 
-   ```
-   $ gcloud iam roles update terraform_svc --project project-01-default --file terraform-roles.yaml 
-   The specified role does not contain an "etag" field identifying a 
-   specific version to replace. Updating a role without an "etag" can 
-   overwrite concurrent role changes.
+      ```
+      $ gcloud iam roles update terraform_svc --project project-01-default --file terraform-roles.yaml 
+      The specified role does not contain an "etag" field identifying a 
+      specific version to replace. Updating a role without an "etag" can 
+      overwrite concurrent role changes.
 
-   Replace existing role (Y/n)?  Y
+      Replace existing role (Y/n)?  Y
 
-   description: Terraform Service Role for GCP Compute
-   etag: deadbeef
-   includedPermissions:
-   - compute.disks.create
-   - compute.instances.create
-   - compute.instances.delete
-   - compute.instances.get
-   - compute.instances.setMetadata
-   - compute.subnetworks.use
-   - compute.subnetworks.useExternalIp
-   name: projects/project-01-default/roles/terraform_svc
-   stage: ALPHA
-   title: Terraform
-   ```
+      description: Terraform Service Role for GCP Compute
+      etag: deadbeef
+      includedPermissions:
+      - compute.disks.create
+      - compute.instances.create
+      - compute.instances.delete
+      - compute.instances.get
+      - compute.instances.setMetadata
+      - compute.subnetworks.use
+      - compute.subnetworks.useExternalIp
+      name: projects/project-01-default/roles/terraform_svc
+      stage: ALPHA
+      title: Terraform
+      ```
 
 1. Run `terraform destroy` to delete the VM
    ```
