@@ -3,7 +3,7 @@ The idea behind infrastructure as code (IaC) is to create and execute code to de
 * [terraform](https://www.terraform.io)
 
 ***
-1. prep install terraform
+1. Install terraform
    * macOS (Unix)
    ```
    $ brew install terraform
