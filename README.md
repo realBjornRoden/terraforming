@@ -20,12 +20,12 @@ The idea behind infrastructure as code (IaC) is to create and execute code to de
    /usr/local/Cellar/terraform/0.12.9: 6 files, 49.2MB
    ```
    * Other platforms [Download Terraform](https://www.terraform.io/downloads.html)
-     <br>"Install Terraform by unzipping it and moving it to a directory included in your system's PATH"
+     <br><i>"Install Terraform by unzipping it and moving it to a directory included in your system's PATH"</i>
 1. Basics
-```
-$ terraform init
-$ terraform apply
-```
+   ```
+   $ terraform init
+   $ terraform apply
+   ```
 
 * AWS (Amazon Web Services)
    ```
