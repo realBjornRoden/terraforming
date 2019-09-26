@@ -1,8 +1,9 @@
-# terraform templates
-The idea behind infrastructure as code (IaC) is to create and execute code to define, deploy, update, and destroy the computing, storage and networking infrastructure.
+# infrastructure as code (IaC)
+The purpose of infrastructure as code (IaC) is to create and execute code to define, create, modify, and delete computing, storage and networking infrastructure, with consistency.
 * [terraform](https://www.terraform.io)
 
 ***
+## terraform templates
 1. Install terraform
    * macOS (Unix)
    ```
@@ -28,7 +29,7 @@ The idea behind infrastructure as code (IaC) is to create and execute code to de
    $ terraform apply
    ```
 
-* AWS (Amazon Web Services)
+## AWS (Amazon Web Services)
    ```
    provider "aws" {
      region = "us-east-2"
@@ -186,10 +187,10 @@ actions need to be performed.
    None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
-* GCP (Google Cloud Platform)
+## GCP (Google Cloud Platform)
 ```
 ```
 
-* MSAC (Microsoft Azure Cloud)
+## MSAC (Microsoft Azure Cloud)
 ```
 ```
