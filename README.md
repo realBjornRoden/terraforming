@@ -478,6 +478,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    etag: deadbeef
    version: 1
    ```
+   
 * main.tf
    ```
    provider "google" {
@@ -632,6 +633,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    NAME        ZONE        MACHINE_TYPE  PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
    vm-solo-01  us-east1-b  f1-micro                   10.142.0.2   35.243.203.155  RUNNING
    ```
+
 1.  Run `gcloud iam roles update` to add the permission `compute.instances.get`
    ```
    $ gcloud iam roles update terraform_svc --project project-01-default --file terraform-roles.yaml 
