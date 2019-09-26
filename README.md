@@ -24,6 +24,7 @@ The idea behind infrastructure as code (IaC) is to create and execute code to de
 1. Basics
    ```
    $ terraform init
+   $ terraform plan
    $ terraform apply
    ```
 
@@ -67,6 +68,122 @@ The idea behind infrastructure as code (IaC) is to create and execute code to de
    If you ever set or change modules or backend configuration for Terraform,
    rerun this command to reinitialize your working directory. If you forget, other
    commands will detect it and remind you to do so if necessary.
+   ```
+   1. terraform apply
+   ```
+terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+aws_instance.vm-solo-01: Refreshing state... [id=i-0b11a0cdff48a7308]
+
+------------------------------------------------------------------------
+
+No changes. Infrastructure is up-to-date.
+
+This means that Terraform did not detect any differences between your
+configuration and real physical resources that exist. As a result, no
+actions need to be performed.
+
+   ```
+   1. terraform apply
+   ```
+   $ terraform apply
+
+   An execution plan has been generated and is shown below.
+   Resource actions are indicated with the following symbols:
+     + create
+
+   Terraform will perform the following actions:
+
+     # aws_instance.vm-solo-01 will be created
+     + resource "aws_instance" "vm-solo-01" {
+         + ami                          = "ami-00c03f7f7f2ec15c3"
+         + arn                          = (known after apply)
+         + associate_public_ip_address  = (known after apply)
+         + availability_zone            = (known after apply)
+         + cpu_core_count               = (known after apply)
+         + cpu_threads_per_core         = (known after apply)
+         + get_password_data            = false
+         + host_id                      = (known after apply)
+         + id                           = (known after apply)
+         + instance_state               = (known after apply)
+         + instance_type                = "t2.micro"
+         + ipv6_address_count           = (known after apply)
+         + ipv6_addresses               = (known after apply)
+         + key_name                     = (known after apply)
+         + network_interface_id         = (known after apply)
+         + password_data                = (known after apply)
+         + placement_group              = (known after apply)
+         + primary_network_interface_id = (known after apply)
+         + private_dns                  = (known after apply)
+         + private_ip                   = (known after apply)
+         + public_dns                   = (known after apply)
+         + public_ip                    = (known after apply)
+         + security_groups              = (known after apply)
+         + source_dest_check            = true
+         + subnet_id                    = (known after apply)
+         + tenancy                      = (known after apply)
+         + volume_tags                  = (known after apply)
+         + vpc_security_group_ids       = (known after apply)
+
+         + ebs_block_device {
+             + delete_on_termination = (known after apply)
+             + device_name           = (known after apply)
+             + encrypted             = (known after apply)
+             + iops                  = (known after apply)
+             + kms_key_id            = (known after apply)
+             + snapshot_id           = (known after apply)
+             + volume_id             = (known after apply)
+             + volume_size           = (known after apply)
+             + volume_type           = (known after apply)
+           }
+   
+         + ephemeral_block_device {
+             + device_name  = (known after apply)
+             + no_device    = (known after apply)
+             + virtual_name = (known after apply)
+           }
+   
+         + network_interface {
+             + delete_on_termination = (known after apply)
+             + device_index          = (known after apply)
+             + network_interface_id  = (known after apply)
+           }
+   
+         + root_block_device {
+             + delete_on_termination = (known after apply)
+             + encrypted             = (known after apply)
+             + iops                  = (known after apply)
+             + kms_key_id            = (known after apply)
+             + volume_id             = (known after apply)
+             + volume_size           = (known after apply)
+             + volume_type           = (known after apply)
+           }
+       }
+
+   Plan: 1 to add, 0 to change, 0 to destroy.
+
+   Do you want to perform these actions?
+     Terraform will perform the actions described above.
+     Only 'yes' will be accepted to approve.
+   
+     Enter a value: yes
+   
+   aws_instance.vm-solo-01: Creating...
+   aws_instance.vm-solo-01: Still creating... [10s elapsed]
+   aws_instance.vm-solo-01: Still creating... [20s elapsed]
+   aws_instance.vm-solo-01: Still creating... [30s elapsed]
+   aws_instance.vm-solo-01: Still creating... [40s elapsed]
+   aws_instance.vm-solo-01: Creation complete after 50s [id=i-0b11a0cdff48a7308]
+   
+   Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+   ```
+   1. aws ec2 describe-instances
+   ```
+   $ aws ec2 describe-instances --region us-east-2 --query 'Reservations[*].Instances[*].[Tags[?Key==\`Name\`]|[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,Placement.AvailabilityZone,State.Name]' --output text"
+   None	i-0b11a0cdff48a7308	172.31.44.122	18.220.211.66	us-east-2c	running
    ```
 
 * GCP (Google Cloud Platform)
