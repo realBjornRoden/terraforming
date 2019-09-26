@@ -337,15 +337,26 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 
 ## GCP (Google Cloud Platform)
    ```
-   resource "google_compute_instance" "vm-solo-01" {
-   	project_id = "project-01-$RANDOM"
+   provider "google" {
+   	credentials = "${file("account.json")}"
+   	region = "us-east2"
    	zone = "us-east2-a"
-   	machine_type = "f1-micro"
+   }
+
+   resource "google_compute_instance" "vm-solo-01" {
+      	provider = "google"
    	name = "vm-solo-01"
+   	machine_type = "f1-micro"
    	boot_disk {
    		initialize_params {
    			image = "debian-cloud/debian-9"
    		}
+   	}
+   	network_interface {
+   		network = "default"
+   		//access_config {
+   			// Ephemeral IP
+   		//}
    	}
    }
    ```
@@ -378,7 +389,91 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    If you ever set or change modules or backend configuration for Terraform,
    rerun this command to reinitialize your working directory. If you forget, other
    commands will detect it and remind you to do so if necessary.
-```
+   ```
+
+   ```
+   $ terraform plan
+   Refreshing Terraform state in-memory prior to plan...
+   The refreshed state will be used to calculate this plan, but will not be
+   persisted to local or remote state storage.
+
+
+   ------------------------------------------------------------------------
+
+   An execution plan has been generated and is shown below.
+   Resource actions are indicated with the following symbols:
+     + create
+
+   Terraform will perform the following actions:
+
+     # google_compute_instance.vm-solo-01 will be created
+     + resource "google_compute_instance" "vm-solo-01" {
+         + can_ip_forward       = false
+         + cpu_platform         = (known after apply)
+         + deletion_protection  = false
+         + guest_accelerator    = (known after apply)
+         + id                   = (known after apply)
+         + instance_id          = (known after apply)
+         + label_fingerprint    = (known after apply)
+         + machine_type         = "f1-micro"
+         + metadata_fingerprint = (known after apply)
+         + name                 = "vm-solo-01"
+         + project              = (known after apply)
+         + self_link            = (known after apply)
+         + tags_fingerprint     = (known after apply)
+         + zone                 = (known after apply)
+
+         + boot_disk {
+             + auto_delete                = true
+             + device_name                = (known after apply)
+             + disk_encryption_key_sha256 = (known after apply)
+             + kms_key_self_link          = (known after apply)
+             + mode                       = "READ_WRITE"
+             + source                     = (known after apply)
+   
+             + initialize_params {
+                 + image  = "debian-cloud/debian-9"
+                 + labels = (known after apply)
+                 + size   = (known after apply)
+                 + type   = (known after apply)
+               }
+           }
+   
+         + network_interface {
+             + address            = (known after apply)
+             + name               = (known after apply)
+             + network            = "default"
+             + network_ip         = (known after apply)
+             + subnetwork         = (known after apply)
+             + subnetwork_project = (known after apply)
+           }
+
+         + scheduling {
+             + automatic_restart   = (known after apply)
+             + on_host_maintenance = (known after apply)
+             + preemptible         = (known after apply)
+   
+             + node_affinities {
+                 + key      = (known after apply)
+                 + operator = (known after apply)
+                 + values   = (known after apply)
+               }
+           }
+       }
+
+   Plan: 1 to add, 0 to change, 0 to destroy.
+
+   ------------------------------------------------------------------------
+   
+   Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+   can't guarantee that exactly these actions will be performed if
+   "terraform apply" is subsequently run.
+   
+   ```
+
+1. Run `terraform apply`
+   ```
+   ```
 
 ## MSAC (Microsoft Azure Cloud)
    ```
