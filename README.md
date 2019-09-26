@@ -37,7 +37,7 @@ $ terraform apply
      instance_type = "t2.micro"
      count = 1
    }
-```
+   ```
    1. terraform init
    ```
    /Users/bjro/code/cloudactions/terraforming: terraform init
