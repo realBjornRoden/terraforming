@@ -337,24 +337,49 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 
 ## GCP (Google Cloud Platform)
    ```
-   provider "aws" {
-   	region = "us-east-2"
-   }
-   resource "aws_instance" "vm-solo-01" {
-   	ami = "ami-00c03f7f7f2ec15c3"
-   	instance_type = "t2.micro"
-   	count = 1
+   resource "google_compute_instance" "vm-solo-01" {
+   	project_id = "project-01-$RANDOM"
+   	zone = "us-east2-a"
+   	machine_type = "f1-micro"
+   	name = "vm-solo-01"
+   	boot_disk {
+   		initialize_params {
+   			image = "debian-cloud/debian-9"
+   		}
+   	}
    }
    ```
+1. Run `terraform init`
+   ```
+   $ terraform init
+
+   Initializing the backend...
+
+   Initializing provider plugins...
+   - Checking for available provider plugins...
+   - Downloading plugin for provider "google" (hashicorp/google) 2.16.0...
+
+   The following providers do not have any version constraints in configuration,
+   so the latest version was installed.
+
+   To prevent automatic upgrades to new major versions that may contain breaking
+   changes, it is recommended to add version = "..." constraints to the
+   corresponding provider blocks in configuration, with the constraint strings
+   suggested below.
+
+   * provider.google: version = "~> 2.16"
+
+   Terraform has been successfully initialized!
+
+   You may now begin working with Terraform. Try running "terraform plan" to see
+   any changes that are required for your infrastructure. All Terraform commands
+   should now work.
+
+   If you ever set or change modules or backend configuration for Terraform,
+   rerun this command to reinitialize your working directory. If you forget, other
+   commands will detect it and remind you to do so if necessary.
+```
 
 ## MSAC (Microsoft Azure Cloud)
    ```
-   provider "aws" {
-   	region = "us-east-2"
-   }
-   resource "aws_instance" "vm-solo-01" {
-   	ami = "ami-00c03f7f7f2ec15c3"
-   	instance_type = "t2.micro"
-   	count = 1
-   }
    ```
