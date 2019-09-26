@@ -535,6 +535,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    commands will detect it and remind you to do so if necessary.
    ```
 
+1. Run `terraform plan`
    ```
    $ terraform plan
    Refreshing Terraform state in-memory prior to plan...
