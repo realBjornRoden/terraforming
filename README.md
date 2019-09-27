@@ -678,10 +678,34 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
 
 ## MSAC (Microsoft Azure Cloud)
+* [Install and configure Terraform to provision Azure resources](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
+* [Create a complete Linux virtual machine infrastructure in Azure with Terraform](ttps://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-create-complete-vm)
+
 * main.tf
 ```
 provider "azurerm" {
 }
+```
+* Login
+```
+$ az login
+Note, we have launched a browser for you to login. For old experience with device code, use "az login --use-device-code"
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "deadbeef-e904-4c8e-a3d8-5503f0e310e7",
+    "isDefault": true,
+    "name": "Free Trial",
+    "state": "Enabled",
+    "tenantId": "deadbeef-3411-4054-a56e-18809a214004",
+    "user": {
+      "name": "user@FQDN",
+      "type": "user"
+    }
+  }
+]
 ```
 
 1. Run `terraform init`
@@ -715,8 +739,186 @@ provider "azurerm" {
    commands will detect it and remind you to do so if necessary.
    ```
 
+1. Run `terraform plan`
+   ```
+   $ terraform plan
+   Refreshing Terraform state in-memory prior to plan...
+   The refreshed state will be used to calculate this plan, but will not be
+   persisted to local or remote state storage.
+
+
+   ------------------------------------------------------------------------
+
+   An execution plan has been generated and is shown below.
+   Resource actions are indicated with the following symbols:
+     + create
+
+   Terraform will perform the following actions:
+
+     # azurerm_network_interface.example will be created
+     + resource "azurerm_network_interface" "example" {
+         + applied_dns_servers           = (known after apply)
+         + dns_servers                   = (known after apply)
+         + enable_accelerated_networking = false
+         + enable_ip_forwarding          = false
+         + id                            = (known after apply)
+         + internal_dns_name_label       = (known after apply)
+         + internal_fqdn                 = (known after apply)
+         + location                      = "eastus"
+         + mac_address                   = (known after apply)
+         + name                          = "vm-solo-01-nic"
+         + private_ip_address            = (known after apply)
+         + private_ip_addresses          = (known after apply)
+         + resource_group_name           = "rg-default-01"
+         + tags                          = (known after apply)
+         + virtual_machine_id            = (known after apply)
+
+         + ip_configuration {
+             + application_gateway_backend_address_pools_ids = (known after apply)
+             + application_security_group_ids                = (known after apply)
+             + load_balancer_backend_address_pools_ids       = (known after apply)
+             + load_balancer_inbound_nat_rules_ids           = (known after apply)
+             + name                                          = "testconfiguration1"
+             + primary                                       = (known after apply)
+             + private_ip_address_allocation                 = "dynamic"
+             + private_ip_address_version                    = "IPv4"
+             + subnet_id                                     = (known after apply)
+           }
+       }
+
+     # azurerm_resource_group.example will be created
+     + resource "azurerm_resource_group" "example" {
+         + id       = (known after apply)
+         + location = "eastus"
+         + name     = "rg-default-01"
+         + tags     = (known after apply)
+       }
+   
+     # azurerm_subnet.example will be created
+     + resource "azurerm_subnet" "example" {
+         + address_prefix       = "10.0.2.0/24"
+         + id                   = (known after apply)
+         + ip_configurations    = (known after apply)
+         + name                 = "subnet-10-0-2-0--24"
+         + resource_group_name  = "rg-default-01"
+         + virtual_network_name = "net-default-01"
+       }
+
+     # azurerm_virtual_machine.example will be created
+     + resource "azurerm_virtual_machine" "example" {
+         + availability_set_id              = (known after apply)
+         + delete_data_disks_on_termination = false
+         + delete_os_disk_on_termination    = true
+         + id                               = (known after apply)
+         + license_type                     = (known after apply)
+         + location                         = "eastus"
+         + name                             = "vm-solo-01"
+         + network_interface_ids            = (known after apply)
+         + resource_group_name              = "rg-default-01"
+         + tags                             = (known after apply)
+         + vm_size                          = "Standard_B1s"
+   
+         + identity {
+             + identity_ids = (known after apply)
+             + principal_id = (known after apply)
+             + type         = (known after apply)
+           }
+   
+         + os_profile {
+             + admin_password = (sensitive value)
+             + admin_username = "az-user"
+             + computer_name  = "vm-solo-01"
+             + custom_data    = (known after apply)
+           }
+
+         + os_profile_linux_config {
+             + disable_password_authentication = false
+           }
+   
+         + storage_data_disk {
+             + caching                   = (known after apply)
+             + create_option             = (known after apply)
+             + disk_size_gb              = (known after apply)
+             + lun                       = (known after apply)
+             + managed_disk_id           = (known after apply)
+             + managed_disk_type         = (known after apply)
+             + name                      = (known after apply)
+             + vhd_uri                   = (known after apply)
+             + write_accelerator_enabled = (known after apply)
+           }
+
+         + storage_image_reference {
+             + offer     = "UbuntuServer"
+             + publisher = "Canonical"
+             + sku       = "16.04-LTS"
+             + version   = "latest"
+           }
+
+         + storage_os_disk {
+             + caching                   = "ReadWrite"
+             + create_option             = "FromImage"
+             + disk_size_gb              = (known after apply)
+             + managed_disk_id           = (known after apply)
+             + managed_disk_type         = "Standard_LRS"
+             + name                      = "osdisk"
+             + os_type                   = (known after apply)
+             + write_accelerator_enabled = false
+           }
+       }
+
+     # azurerm_virtual_network.example will be created
+     + resource "azurerm_virtual_network" "example" {
+         + address_space       = [
+             + "10.0.0.0/16",
+           ]
+         + id                  = (known after apply)
+         + location            = "eastus"
+         + name                = "net-default-01"
+         + resource_group_name = "rg-default-01"
+         + tags                = (known after apply)
+   
+         + subnet {
+             + address_prefix = (known after apply)
+             + id             = (known after apply)
+             + name           = (known after apply)
+             + security_group = (known after apply)
+           }
+       }
+
+   Plan: 5 to add, 0 to change, 0 to destroy.
+
+   ------------------------------------------------------------------------
+
+   Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+   can't guarantee that exactly these actions will be performed if
+   "terraform apply" is subsequently run.
+   ```
+
 1. Run `terraform apply` to create the VM
    ```
+   $ terraform apply -auto-approve
+   azurerm_resource_group.example: Creating...
+   azurerm_resource_group.example: Creation complete after 5s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_virtual_network.example: Creating...
+   azurerm_virtual_network.example: Still creating... [10s elapsed]
+   azurerm_virtual_network.example: Creation complete after 17s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
+   azurerm_subnet.example: Creating...
+   azurerm_subnet.example: Creation complete after 4s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
+   azurerm_network_interface.example: Creating...
+   azurerm_network_interface.example: Creation complete after 5s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_virtual_machine.example: Creating...
+   azurerm_virtual_machine.example: Still creating... [10s elapsed]
+   azurerm_virtual_machine.example: Still creating... [20s elapsed]
+   azurerm_virtual_machine.example: Still creating... [30s elapsed]
+   azurerm_virtual_machine.example: Still creating... [40s elapsed]
+   azurerm_virtual_machine.example: Still creating... [50s elapsed]
+   azurerm_virtual_machine.example: Still creating... [1m0s elapsed]
+   azurerm_virtual_machine.example: Still creating... [1m10s elapsed]
+   azurerm_virtual_machine.example: Still creating... [1m20s elapsed]
+   azurerm_virtual_machine.example: Still creating... [1m30s elapsed]
+   azurerm_virtual_machine.example: Creation complete after 1m38s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
+
+   Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
    ```
 
 1. Run `terraform destroy` to delete the VM
