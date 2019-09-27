@@ -8,3 +8,4 @@ resource "aws_instance" "vm-solo-01" {
 		Name = "vm-solo-01"
 	}
 }
+

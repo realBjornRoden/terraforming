@@ -21,3 +21,4 @@ resource "google_compute_instance" "vm-solo-01" {
 		}
 	}
 }
+
