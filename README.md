@@ -680,7 +680,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 ## MSAC (Microsoft Azure Cloud)
 * [Install and configure Terraform to provision Azure resources](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure)
 
-* [Create a complete Linux virtual machine infrastructure in Azure with Terraform](ttps://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-create-complete-vm)
+* [Create a complete Linux virtual machine infrastructure in Azure with Terraform](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-create-complete-vm)
 
 * main.tf
 ```
