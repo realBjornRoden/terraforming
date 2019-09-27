@@ -1,6 +1,5 @@
 provider "azurerm" {
 }
-
 resource "azurerm_resource_group" "rg" {
 	name     = "rg-default-01"
 	location = "eastus"
@@ -123,4 +122,3 @@ resource "azurerm_network_interface" "internal" {
 		private_ip_address_allocation = "Dynamic"
 	}
 }
-
