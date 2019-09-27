@@ -87,70 +87,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Terraform will perform the following actions:
 
      # aws_instance.vm-solo-01 will be created
-     + resource "aws_instance" "vm-solo-01" {
-         + ami                          = "ami-00c03f7f7f2ec15c3"
-         + arn                          = (known after apply)
-         + associate_public_ip_address  = (known after apply)
-         + availability_zone            = (known after apply)
-         + cpu_core_count               = (known after apply)
-         + cpu_threads_per_core         = (known after apply)
-         + get_password_data            = false
-         + host_id                      = (known after apply)
-         + id                           = (known after apply)
-         + instance_state               = (known after apply)
-         + instance_type                = "t2.micro"
-         + ipv6_address_count           = (known after apply)
-         + ipv6_addresses               = (known after apply)
-         + key_name                     = (known after apply)
-         + network_interface_id         = (known after apply)
-         + password_data                = (known after apply)
-         + placement_group              = (known after apply)
-         + primary_network_interface_id = (known after apply)
-         + private_dns                  = (known after apply)
-         + private_ip                   = (known after apply)
-         + public_dns                   = (known after apply)
-         + public_ip                    = (known after apply)
-         + security_groups              = (known after apply)
-         + source_dest_check            = true
-         + subnet_id                    = (known after apply)
-         + tenancy                      = (known after apply)
-         + volume_tags                  = (known after apply)
-         + vpc_security_group_ids       = (known after apply)
-
-         + ebs_block_device {
-             + delete_on_termination = (known after apply)
-             + device_name           = (known after apply)
-             + encrypted             = (known after apply)
-             + iops                  = (known after apply)
-             + kms_key_id            = (known after apply)
-             + snapshot_id           = (known after apply)
-             + volume_id             = (known after apply)
-             + volume_size           = (known after apply)
-             + volume_type           = (known after apply)
-           }
-   
-         + ephemeral_block_device {
-             + device_name  = (known after apply)
-             + no_device    = (known after apply)
-             + virtual_name = (known after apply)
-           }
-   
-         + network_interface {
-             + delete_on_termination = (known after apply)
-             + device_index          = (known after apply)
-             + network_interface_id  = (known after apply)
-           }
-   
-         + root_block_device {
-             + delete_on_termination = (known after apply)
-             + encrypted             = (known after apply)
-             + iops                  = (known after apply)
-             + kms_key_id            = (known after apply)
-             + volume_id             = (known after apply)
-             + volume_size           = (known after apply)
-             + volume_type           = (known after apply)
-           }
-       }
+     ...
 
    Plan: 1 to add, 0 to change, 0 to destroy.
 
@@ -200,54 +137,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Terraform will perform the following actions:
 
      # aws_instance.vm-solo-01 will be updated in-place
-     ~ resource "aws_instance" "vm-solo-01" {
-           ami                          = "ami-00c03f7f7f2ec15c3"
-           arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308"
-           associate_public_ip_address  = true
-           availability_zone            = "us-east-2c"
-           cpu_core_count               = 1
-           cpu_threads_per_core         = 1
-           disable_api_termination      = false
-           ebs_optimized                = false
-           get_password_data            = false
-           id                           = "i-0b11a0cdff48a7308"
-           instance_state               = "running"
-           instance_type                = "t2.micro"
-           ipv6_address_count           = 0
-           ipv6_addresses               = []
-           monitoring                   = false
-           primary_network_interface_id = "eni-0f2c842e9e3d30902"
-           private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal"
-           private_ip                   = "172.31.44.122"
-           public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com"
-           public_ip                    = "18.220.211.66"
-           security_groups              = [
-               "default",
-           ]
-           source_dest_check            = true
-           subnet_id                    = "subnet-d38e339f"
-         ~ tags                         = {
-             + "Name" = "vm-solo-01"
-           }
-           tenancy                      = "default"
-           volume_tags                  = {}
-           vpc_security_group_ids       = [
-               "sg-ebf9c788",
-           ]
-         
-           credit_specification {
-               cpu_credits = "standard"
-           }
-      
-           root_block_device {
-               delete_on_termination = true
-               encrypted             = false
-               iops                  = 100
-               volume_id             = "vol-0c481ce1e1eb73b56"
-               volume_size           = 8
-               volume_type           = "gp2"
-           }
-       }
+     ...
 
    Plan: 0 to add, 1 to change, 0 to destroy.
 
@@ -270,54 +160,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Terraform will perform the following actions:
 
      # aws_instance.vm-solo-01 will be updated in-place
-     ~ resource "aws_instance" "vm-solo-01" {
-           ami                          = "ami-00c03f7f7f2ec15c3"
-           arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308"
-           associate_public_ip_address  = true
-           availability_zone            = "us-east-2c"
-           cpu_core_count               = 1
-           cpu_threads_per_core         = 1
-           disable_api_termination      = false
-           ebs_optimized                = false
-           get_password_data            = false
-           id                           = "i-0b11a0cdff48a7308"
-           instance_state               = "running"
-           instance_type                = "t2.micro"
-           ipv6_address_count           = 0
-           ipv6_addresses               = []
-           monitoring                   = false
-           primary_network_interface_id = "eni-0f2c842e9e3d30902"
-           private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal"
-           private_ip                   = "172.31.44.122"
-           public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com"
-           public_ip                    = "18.220.211.66"
-           security_groups              = [
-               "default",
-           ]
-           source_dest_check            = true
-           subnet_id                    = "subnet-d38e339f"
-         ~ tags                         = {
-             + "Name" = "vm-solo-01"
-           }
-           tenancy                      = "default"
-           volume_tags                  = {}
-           vpc_security_group_ids       = [
-               "sg-ebf9c788",
-           ]
-
-           credit_specification {
-               cpu_credits = "standard"
-           }
-   
-           root_block_device {
-               delete_on_termination = true
-               encrypted             = false
-               iops                  = 100
-               volume_id             = "vol-0c481ce1e1eb73b56"
-               volume_size           = 8
-               volume_type           = "gp2"
-           }
-       }
+     ...
    
    Plan: 0 to add, 1 to change, 0 to destroy.
    
@@ -352,54 +195,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Terraform will perform the following actions:
    
      # aws_instance.vm-solo-01 will be destroyed
-     - resource "aws_instance" "vm-solo-01" {
-         - ami                          = "ami-00c03f7f7f2ec15c3" -> null
-         - arn                          = "arn:aws:ec2:us-east-2:598691507898:instance/i-0b11a0cdff48a7308" -> null
-         - associate_public_ip_address  = true -> null
-         - availability_zone            = "us-east-2c" -> null
-         - cpu_core_count               = 1 -> null
-         - cpu_threads_per_core         = 1 -> null
-         - disable_api_termination      = false -> null
-         - ebs_optimized                = false -> null
-         - get_password_data            = false -> null
-         - id                           = "i-0b11a0cdff48a7308" -> null
-         - instance_state               = "running" -> null
-         - instance_type                = "t2.micro" -> null
-         - ipv6_address_count           = 0 -> null
-         - ipv6_addresses               = [] -> null
-         - monitoring                   = false -> null
-         - primary_network_interface_id = "eni-0f2c842e9e3d30902" -> null
-         - private_dns                  = "ip-172-31-44-122.us-east-2.compute.internal" -> null
-         - private_ip                   = "172.31.44.122" -> null
-         - public_dns                   = "ec2-18-220-211-66.us-east-2.compute.amazonaws.com" -> null
-         - public_ip                    = "18.220.211.66" -> null
-         - security_groups              = [
-             - "default",
-           ] -> null
-         - source_dest_check            = true -> null
-         - subnet_id                    = "subnet-d38e339f" -> null
-         - tags                         = {
-             - "Name" = "vm-solo-01"
-           } -> null
-         - tenancy                      = "default" -> null
-         - volume_tags                  = {} -> null
-         - vpc_security_group_ids       = [
-             - "sg-ebf9c788",
-           ] -> null
-   
-         - credit_specification {
-             - cpu_credits = "standard" -> null
-           }
-   
-         - root_block_device {
-             - delete_on_termination = true -> null
-             - encrypted             = false -> null
-             - iops                  = 100 -> null
-             - volume_id             = "vol-0c481ce1e1eb73b56" -> null
-             - volume_size           = 8 -> null
-             - volume_type           = "gp2" -> null
-           }
-       }
+     ...
    
    Plan: 0 to add, 0 to change, 1 to destroy.
    
@@ -554,59 +350,7 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    Terraform will perform the following actions:
 
      # google_compute_instance.vm-solo-01 will be created
-     + resource "google_compute_instance" "vm-solo-01" {
-         + can_ip_forward       = false
-         + cpu_platform         = (known after apply)
-         + deletion_protection  = false
-         + guest_accelerator    = (known after apply)
-         + id                   = (known after apply)
-         + instance_id          = (known after apply)
-         + label_fingerprint    = (known after apply)
-         + machine_type         = "f1-micro"
-         + metadata_fingerprint = (known after apply)
-         + name                 = "vm-solo-01"
-         + project              = (known after apply)
-         + self_link            = (known after apply)
-         + tags_fingerprint     = (known after apply)
-         + zone                 = (known after apply)
-
-         + boot_disk {
-             + auto_delete                = true
-             + device_name                = (known after apply)
-             + disk_encryption_key_sha256 = (known after apply)
-             + kms_key_self_link          = (known after apply)
-             + mode                       = "READ_WRITE"
-             + source                     = (known after apply)
-   
-             + initialize_params {
-                 + image  = "debian-cloud/debian-9"
-                 + labels = (known after apply)
-                 + size   = (known after apply)
-                 + type   = (known after apply)
-               }
-           }
-   
-         + network_interface {
-             + address            = (known after apply)
-             + name               = (known after apply)
-             + network            = "default"
-             + network_ip         = (known after apply)
-             + subnetwork         = (known after apply)
-             + subnetwork_project = (known after apply)
-           }
-
-         + scheduling {
-             + automatic_restart   = (known after apply)
-             + on_host_maintenance = (known after apply)
-             + preemptible         = (known after apply)
-   
-             + node_affinities {
-                 + key      = (known after apply)
-                 + operator = (known after apply)
-                 + values   = (known after apply)
-               }
-           }
-       }
+     ...
 
    Plan: 1 to add, 0 to change, 0 to destroy.
 
@@ -686,6 +430,128 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
 ```
 provider "azurerm" {
 }
+resource "azurerm_resource_group" "rg" {
+    name     = "rg-default-01"
+    location = "eastus"
+}
+
+variable "vmname" {
+    default     = "vm-solo-01"
+}
+variable "ssh_key" {
+    default     = "~/.ssh/id_rsa.pub"
+}
+variable "admin_username" {
+    default     = "az-user"
+}
+
+resource "azurerm_virtual_machine" "example" {
+    name                          = "${var.vmname}"
+    location                      = "${azurerm_resource_group.rg.location}"
+    resource_group_name           = "${azurerm_resource_group.rg.name}"
+    primary_network_interface_id  = "${azurerm_network_interface.external.id}"
+    network_interface_ids         = ["${azurerm_network_interface.external.id}", "${azurerm_network_interface.internal.id}"]
+
+    vm_size                       = "Standard_B1s"
+    delete_os_disk_on_termination = true
+
+    storage_image_reference {
+        publisher = "OpenLogic"
+        offer     = "CentOS"
+        sku       = "7.5"
+        version   = "latest"
+    }
+
+    storage_os_disk {
+        name              = "${var.vmname}-bootdisk"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+        managed_disk_type = "Standard_LRS"
+    }
+
+    os_profile {
+        computer_name  = "${var.vmname}"
+        admin_username = "${var.admin_username}"
+    }
+
+    os_profile_linux_config {
+        disable_password_authentication = true
+        ssh_keys {
+            path     = "/home/${var.admin_username}/.ssh/authorized_keys"
+            key_data = "${file("~/.ssh/id_rsa.pub")}"
+        }
+    }
+}
+
+resource "azurerm_virtual_network" "vnet" {
+    name                = "vnet-172-16-0-0--16"
+    address_space       = ["172.16.0.0/16"]
+    resource_group_name = "${azurerm_resource_group.rg.name}"
+    location            = "${azurerm_resource_group.rg.location}"
+}
+
+resource "azurerm_subnet" "external" {
+    name                 = "vsubnet-172-16-1-0--24-external"
+    virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+    resource_group_name  = "${azurerm_resource_group.rg.name}"
+    address_prefix       = "172.16.1.0/24"
+}
+
+resource "azurerm_subnet" "internal" {
+    name                 = "vsubnet-172-16-2-0--24-internal"
+    virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+    resource_group_name  = "${azurerm_resource_group.rg.name}"
+    address_prefix       = "172.16.2.0/24"
+}
+
+resource "azurerm_public_ip" "public" {
+    name                = "${var.vmname}-publicip"
+    location            = "${azurerm_resource_group.rg.location}"
+    resource_group_name = "${azurerm_resource_group.rg.name}"
+    allocation_method   = "Dynamic"
+}
+
+resource "azurerm_network_security_group" "nsg" {
+    name                = "nsg-default-01"
+    location            = "${azurerm_resource_group.rg.location}"
+    resource_group_name = "${azurerm_resource_group.rg.name}"
+    security_rule {
+        name                       = "allow_SSH"
+        description                = "Allow SSH access"
+        priority                   = 100
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_address_prefix      = "*"
+        source_port_range          = "*"
+        destination_address_prefix = "*"
+        destination_port_range     = "22"
+    }
+}
+
+resource "azurerm_network_interface" "external" {
+    name                      = "${var.vmname}-external"
+    location                  = "${azurerm_resource_group.rg.location}"
+    resource_group_name       = "${azurerm_resource_group.rg.name}"
+    network_security_group_id = "${azurerm_network_security_group.nsg.id}"
+    ip_configuration {
+        name                          = "primary"
+        subnet_id                     = "${azurerm_subnet.external.id}"
+        public_ip_address_id          = "${azurerm_public_ip.public.id}"
+        private_ip_address_allocation = "Dynamic"
+    }
+}
+
+resource "azurerm_network_interface" "internal" {
+    name                = "${var.vmname}-internal"
+    location            = "${azurerm_resource_group.rg.location}"
+    resource_group_name = "${azurerm_resource_group.rg.name}"
+    ip_configuration {
+        name                          = "primary"
+        subnet_id                     = "${azurerm_subnet.internal.id}"
+        private_ip_address_allocation = "Dynamic"
+    }
+}
 ```
 * Login
 ```
@@ -749,164 +615,71 @@ You have logged in. Now let us find all the subscriptions to which you have acce
 
 
    ------------------------------------------------------------------------
-
    An execution plan has been generated and is shown below.
    Resource actions are indicated with the following symbols:
      + create
 
    Terraform will perform the following actions:
 
-     # azurerm_network_interface.example will be created
-     + resource "azurerm_network_interface" "example" {
-         + applied_dns_servers           = (known after apply)
-         + dns_servers                   = (known after apply)
-         + enable_accelerated_networking = false
-         + enable_ip_forwarding          = false
-         + id                            = (known after apply)
-         + internal_dns_name_label       = (known after apply)
-         + internal_fqdn                 = (known after apply)
-         + location                      = "eastus"
-         + mac_address                   = (known after apply)
-         + name                          = "vm-solo-01-nic"
-         + private_ip_address            = (known after apply)
-         + private_ip_addresses          = (known after apply)
-         + resource_group_name           = "rg-default-01"
-         + tags                          = (known after apply)
-         + virtual_machine_id            = (known after apply)
-
-         + ip_configuration {
-             + application_gateway_backend_address_pools_ids = (known after apply)
-             + application_security_group_ids                = (known after apply)
-             + load_balancer_backend_address_pools_ids       = (known after apply)
-             + load_balancer_inbound_nat_rules_ids           = (known after apply)
-             + name                                          = "testconfiguration1"
-             + primary                                       = (known after apply)
-             + private_ip_address_allocation                 = "dynamic"
-             + private_ip_address_version                    = "IPv4"
-             + subnet_id                                     = (known after apply)
-           }
-       }
-
-     # azurerm_resource_group.example will be created
-     + resource "azurerm_resource_group" "example" {
-         + id       = (known after apply)
-         + location = "eastus"
-         + name     = "rg-default-01"
-         + tags     = (known after apply)
-       }
-   
-     # azurerm_subnet.example will be created
-     + resource "azurerm_subnet" "example" {
-         + address_prefix       = "10.0.2.0/24"
-         + id                   = (known after apply)
-         + ip_configurations    = (known after apply)
-         + name                 = "subnet-10-0-2-0--24"
-         + resource_group_name  = "rg-default-01"
-         + virtual_network_name = "net-default-01"
-       }
-
+     # azurerm_network_interface.external will be created
+     ...
+     # azurerm_network_interface.internal will be created
+     ...
+     # azurerm_network_security_group.nsg will be created
+     ...
+     # azurerm_public_ip.public will be created
+     ...
+     # azurerm_resource_group.rg will be created
+     ...
+     # azurerm_subnet.external will be created
+     ...
+     # azurerm_subnet.internal will be created
+     ...
      # azurerm_virtual_machine.example will be created
-     + resource "azurerm_virtual_machine" "example" {
-         + availability_set_id              = (known after apply)
-         + delete_data_disks_on_termination = false
-         + delete_os_disk_on_termination    = true
-         + id                               = (known after apply)
-         + license_type                     = (known after apply)
-         + location                         = "eastus"
-         + name                             = "vm-solo-01"
-         + network_interface_ids            = (known after apply)
-         + resource_group_name              = "rg-default-01"
-         + tags                             = (known after apply)
-         + vm_size                          = "Standard_B1s"
-   
-         + identity {
-             + identity_ids = (known after apply)
-             + principal_id = (known after apply)
-             + type         = (known after apply)
-           }
-   
-         + os_profile {
-             + admin_password = (sensitive value)
-             + admin_username = "az-user"
-             + computer_name  = "vm-solo-01"
-             + custom_data    = (known after apply)
-           }
+     ...
+     # azurerm_virtual_network.vnet will be created
+     ...
 
-         + os_profile_linux_config {
-             + disable_password_authentication = false
-           }
-   
-         + storage_data_disk {
-             + caching                   = (known after apply)
-             + create_option             = (known after apply)
-             + disk_size_gb              = (known after apply)
-             + lun                       = (known after apply)
-             + managed_disk_id           = (known after apply)
-             + managed_disk_type         = (known after apply)
-             + name                      = (known after apply)
-             + vhd_uri                   = (known after apply)
-             + write_accelerator_enabled = (known after apply)
-           }
-
-         + storage_image_reference {
-             + offer     = "UbuntuServer"
-             + publisher = "Canonical"
-             + sku       = "16.04-LTS"
-             + version   = "latest"
-           }
-
-         + storage_os_disk {
-             + caching                   = "ReadWrite"
-             + create_option             = "FromImage"
-             + disk_size_gb              = (known after apply)
-             + managed_disk_id           = (known after apply)
-             + managed_disk_type         = "Standard_LRS"
-             + name                      = "osdisk"
-             + os_type                   = (known after apply)
-             + write_accelerator_enabled = false
-           }
-       }
-
-     # azurerm_virtual_network.example will be created
-     + resource "azurerm_virtual_network" "example" {
-         + address_space       = [
-             + "10.0.0.0/16",
-           ]
-         + id                  = (known after apply)
-         + location            = "eastus"
-         + name                = "net-default-01"
-         + resource_group_name = "rg-default-01"
-         + tags                = (known after apply)
-   
-         + subnet {
-             + address_prefix = (known after apply)
-             + id             = (known after apply)
-             + name           = (known after apply)
-             + security_group = (known after apply)
-           }
-       }
-
-   Plan: 5 to add, 0 to change, 0 to destroy.
+   Plan: 9 to add, 0 to change, 0 to destroy.
 
    ------------------------------------------------------------------------
 
    Note: You didn't specify an "-out" parameter to save this plan, so Terraform
    can't guarantee that exactly these actions will be performed if
    "terraform apply" is subsequently run.
+
+
    ```
 
 1. Run `terraform apply` to create the VM
    ```
    $ terraform apply -auto-approve
-   azurerm_resource_group.example: Creating...
-   azurerm_resource_group.example: Creation complete after 5s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
-   azurerm_virtual_network.example: Creating...
-   azurerm_virtual_network.example: Still creating... [10s elapsed]
-   azurerm_virtual_network.example: Creation complete after 17s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
-   azurerm_subnet.example: Creating...
-   azurerm_subnet.example: Creation complete after 4s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
-   azurerm_network_interface.example: Creating...
-   azurerm_network_interface.example: Creation complete after 5s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_resource_group.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_subnet.internal: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-172-16-0-0--16/subnets/internal]
+   azurerm_subnet.external: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-172-16-0-0--16/subnets/external]
+   azurerm_network_interface.external: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-enic]
+   azurerm_network_interface.internal: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-inic]
+   azurerm_public_ip.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/publicIPAddresses/publicip-vm-solo-01]
+   azurerm_network_security_group.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkSecurityGroups/nsg-default-01]
+   azurerm_virtual_network.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-172-16-0-0--16]
+   azurerm_virtual_machine.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
+   azurerm_resource_group.rg: Creating...
+   azurerm_resource_group.rg: Creation complete after 4s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_virtual_network.vnet: Creating...
+   azurerm_public_ip.public: Creating...
+   azurerm_network_security_group.nsg: Creating...
+   azurerm_network_security_group.nsg: Creation complete after 6s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkSecurityGroups/nsg-default-01]
+   azurerm_public_ip.public: Creation complete after 7s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/publicIPAddresses/vm-solo-01-publicip]
+   azurerm_virtual_network.vnet: Still creating... [10s elapsed]
+   azurerm_virtual_network.vnet: Creation complete after 16s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16]
+   azurerm_subnet.internal: Creating...
+   azurerm_subnet.external: Creating...
+   azurerm_subnet.internal: Creation complete after 3s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-2-0--24-internal]
+   azurerm_network_interface.internal: Creating...
+   azurerm_subnet.external: Creation complete after 6s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-1-0--24-external]
+   azurerm_network_interface.external: Creating...
+   azurerm_network_interface.internal: Creation complete after 9s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-internal]
+   azurerm_network_interface.external: Creation complete after 10s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-external]
    azurerm_virtual_machine.example: Creating...
    azurerm_virtual_machine.example: Still creating... [10s elapsed]
    azurerm_virtual_machine.example: Still creating... [20s elapsed]
@@ -919,17 +692,21 @@ You have logged in. Now let us find all the subscriptions to which you have acce
    azurerm_virtual_machine.example: Still creating... [1m30s elapsed]
    azurerm_virtual_machine.example: Creation complete after 1m38s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
 
-   Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+   Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
+
    ```
 
 1. Run `terraform destroy` to delete the VM
    ```
    $ terraform destroy -auto-approve
-
-   azurerm_resource_group.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
-   azurerm_virtual_network.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
-   azurerm_subnet.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
-   azurerm_network_interface.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_public_ip.public: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/publicIPAddresses/vm-solo-01-publicip]
+   azurerm_virtual_network.vnet: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16]
+   azurerm_network_security_group.nsg: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkSecurityGroups/nsg-default-01]
+   azurerm_subnet.internal: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-2-0--24-internal]
+   azurerm_subnet.external: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-1-0--24-external]
+   azurerm_network_interface.external: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-external]
+   azurerm_network_interface.internal: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-internal]
    azurerm_virtual_machine.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
    azurerm_virtual_machine.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
    azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 10s elapsed]
@@ -941,63 +718,48 @@ You have logged in. Now let us find all the subscriptions to which you have acce
    azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m10s elapsed]
    azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m20s elapsed]
    azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m30s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m40s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m50s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m0s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m10s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m20s elapsed]
-   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m30s elapsed]
-   azurerm_virtual_machine.example: Destruction complete after 8m39s
-   azurerm_network_interface.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
-   azurerm_network_interface.example: Destruction complete after 3s
-   azurerm_subnet.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
-   azurerm_subnet.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...default-01/subnets/subnet-10-0-2-0--24, 10s elapsed]
-   azurerm_subnet.example: Destruction complete after 12s
-   azurerm_virtual_network.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
-   azurerm_virtual_network.example: Destruction complete after 2s
-   azurerm_resource_group.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
-   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 10s elapsed]
-   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 20s elapsed]
-   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 30s elapsed]
-   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 40s elapsed]
-   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 50s elapsed]
-   azurerm_resource_group.example: Destruction complete after 54s
-   
-   Destroy complete! Resources: 5 destroyed.
+   azurerm_virtual_machine.example: Destruction complete after 1m37s
+   azurerm_network_interface.external: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-external]
+   azurerm_network_interface.internal: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-internal]
+   azurerm_network_interface.external: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-.../networkInterfaces/vm-solo-01-external, 10s elapsed]
+   azurerm_network_interface.internal: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-.../networkInterfaces/vm-solo-01-internal, 10s elapsed]
+   azurerm_network_interface.external: Destruction complete after 13s
+   azurerm_public_ip.public: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/publicIPAddresses/vm-solo-01-publicip]
+   azurerm_subnet.external: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-1-0--24-external]
+   azurerm_network_security_group.nsg: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkSecurityGroups/nsg-default-01]
+   azurerm_public_ip.public: Destruction complete after 2s
+   azurerm_network_security_group.nsg: Destruction complete after 3s
+   azurerm_network_interface.internal: Destruction complete after 16s
+   azurerm_subnet.internal: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16/subnets/vsubnet-172-16-2-0--24-internal]
+   azurerm_subnet.external: Destruction complete after 5s
+   azurerm_subnet.internal: Destruction complete after 4s
+   azurerm_virtual_network.vnet: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/vnet-172-16-0-0--16]
+   azurerm_virtual_network.vnet: Destruction complete after 2s
+   azurerm_resource_group.rg: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 10s elapsed]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 20s elapsed]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 30s elapsed]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 40s elapsed]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 50s elapsed]
+   azurerm_resource_group.rg: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 1m0s elapsed]
+   azurerm_resource_group.rg: Destruction complete after 1m10s
+
+   Destroy complete! Resources: 9 destroyed.
+   ```
+
+1. Login to the VM
+   ```
+   $ ssh az-user@13.82.56.228
+   The authenticity of host '13.82.56.228 (13.82.56.228)' can't be established.
+   ECDSA key fingerprint is SHA256:jjybLmcmvFqB/L0k1OZTZTghf5933DtxUyguA8wloU0.
+   Are you sure you want to continue connecting (yes/no)? yes
+   Warning: Permanently added '13.82.56.228' (ECDSA) to the list of known hosts.
+   [az-user@vm-solo-01 ~]$ ip addr|egrep "^[0-9]|inet "
+   1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+       inet 127.0.0.1/8 scope host lo
+   2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+       inet 172.16.1.4/24 brd 172.16.1.255 scope global eth0
+   3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+       inet 172.16.2.4/24 brd 172.16.2.255 scope global noprefixroute eth1
+
    ```
