@@ -1,6 +1,12 @@
-# Infrastructure as Code (IaC) with AWS, Azure, GCP
+# Infrastructure as Code (IaC) with Terraform HCL for GCP
 The purpose of infrastructure as code (IaC) is to create and execute code to define, create, modify, and delete computing, storage and networking infrastructure, with consistency.
-* [terraform](https://www.terraform.io)
+
+* Basics with [Terraform HCL](https://www.terraform.io)
+   ```
+   $ terraform init
+   $ terraform plan
+   $ terraform apply
+   ```
 
 ***
 ## terraform templates
@@ -22,12 +28,6 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
    ```
    * Other platforms [Download Terraform](https://www.terraform.io/downloads.html)
      <br><i>"Install Terraform by unzipping it and moving it to a directory included in your system's PATH"</i>
-1. Basics
-   ```
-   $ terraform init
-   $ terraform plan
-   $ terraform apply
-   ```
 
 ## AWS (Amazon Web Services)
 * [AWS]()
