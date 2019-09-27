@@ -898,14 +898,14 @@ You have logged in. Now let us find all the subscriptions to which you have acce
    ```
    $ terraform apply -auto-approve
    azurerm_resource_group.example: Creating...
-   azurerm_resource_group.example: Creation complete after 5s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_resource_group.example: Creation complete after 5s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
    azurerm_virtual_network.example: Creating...
    azurerm_virtual_network.example: Still creating... [10s elapsed]
-   azurerm_virtual_network.example: Creation complete after 17s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
+   azurerm_virtual_network.example: Creation complete after 17s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
    azurerm_subnet.example: Creating...
-   azurerm_subnet.example: Creation complete after 4s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
+   azurerm_subnet.example: Creation complete after 4s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
    azurerm_network_interface.example: Creating...
-   azurerm_network_interface.example: Creation complete after 5s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_network_interface.example: Creation complete after 5s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
    azurerm_virtual_machine.example: Creating...
    azurerm_virtual_machine.example: Still creating... [10s elapsed]
    azurerm_virtual_machine.example: Still creating... [20s elapsed]
@@ -916,12 +916,87 @@ You have logged in. Now let us find all the subscriptions to which you have acce
    azurerm_virtual_machine.example: Still creating... [1m10s elapsed]
    azurerm_virtual_machine.example: Still creating... [1m20s elapsed]
    azurerm_virtual_machine.example: Still creating... [1m30s elapsed]
-   azurerm_virtual_machine.example: Creation complete after 1m38s [id=/subscriptions/8e79d269-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
+   azurerm_virtual_machine.example: Creation complete after 1m38s [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
 
    Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
    ```
 
 1. Run `terraform destroy` to delete the VM
    ```
-   ```
+   $ terraform destroy -auto-approve
 
+   azurerm_resource_group.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_virtual_network.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
+   azurerm_subnet.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
+   azurerm_network_interface.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_virtual_machine.example: Refreshing state... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
+   azurerm_virtual_machine.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Compute/virtualMachines/vm-solo-01]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 1m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 2m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 3m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 4m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 5m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 6m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m30s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m40s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 7m50s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m0s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m10s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m20s elapsed]
+   azurerm_virtual_machine.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...oft.Compute/virtualMachines/vm-solo-01, 8m30s elapsed]
+   azurerm_virtual_machine.example: Destruction complete after 8m39s
+   azurerm_network_interface.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/networkInterfaces/vm-solo-01-nic]
+   azurerm_network_interface.example: Destruction complete after 3s
+   azurerm_subnet.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01/subnets/subnet-10-0-2-0--24]
+   azurerm_subnet.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-...default-01/subnets/subnet-10-0-2-0--24, 10s elapsed]
+   azurerm_subnet.example: Destruction complete after 12s
+   azurerm_virtual_network.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01/providers/Microsoft.Network/virtualNetworks/net-default-01]
+   azurerm_virtual_network.example: Destruction complete after 2s
+   azurerm_resource_group.example: Destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01]
+   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 10s elapsed]
+   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 20s elapsed]
+   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 30s elapsed]
+   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 40s elapsed]
+   azurerm_resource_group.example: Still destroying... [id=/subscriptions/deadbeef-e904-4c8e-a3d8-5503f0e310e7/resourceGroups/rg-default-01, 50s elapsed]
+   azurerm_resource_group.example: Destruction complete after 54s
+   
+   Destroy complete! Resources: 5 destroyed.
+   ```
