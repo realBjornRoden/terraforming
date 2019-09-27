@@ -30,7 +30,6 @@ The purpose of infrastructure as code (IaC) is to create and execute code to def
      <br><i>"Install Terraform by unzipping it and moving it to a directory included in your system's PATH"</i>
 
 ## AWS (Amazon Web Services)
-* [AWS]()
 * Ensure login key configuration is made with  the `aws configure` for the user with sufficient Policy permissions
 <br><i>NB. Below is performed with the group set to the policy <b>AmazonEC2FullAccess</b></i>
 
